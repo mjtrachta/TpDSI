@@ -55,4 +55,13 @@ public class BodegaServiceImpl implements BodegaService {
     }
 
 
+    // actualiza los campos periodo_actualizable por la fecha actual  y
+    // es_actualizable de 1 a 0 de la bodega con un id_bodega determinado
+    // solo si es_actualizable esta en  1
+    @Override
+    public boolean actualizarPeriodoYEstado(Integer id_bodega) {
+        int updatedRows = bodegaRepository.actualizarPeriodoYEstado(id_bodega);
+        return updatedRows > 0;
+    }
+
 }

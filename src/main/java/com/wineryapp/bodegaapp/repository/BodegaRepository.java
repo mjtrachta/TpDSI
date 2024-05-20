@@ -3,8 +3,12 @@ package com.wineryapp.bodegaapp.repository;
 import com.wineryapp.bodegaapp.dto.BodegaDTO;
 import com.wineryapp.bodegaapp.dto.BodegaFullDTO;
 import com.wineryapp.bodegaapp.entity.Bodega;
+import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
 import java.util.List;
 
 public interface BodegaRepository extends JpaRepository<Bodega, Integer> {
@@ -18,7 +22,13 @@ public interface BodegaRepository extends JpaRepository<Bodega, Integer> {
     List<BodegaDTO> obtenerBodegasActualizablesDTO();
 
 
-
+    // actualiza los campos periodo_actualizable por la fecha actual  y
+    // es_actualizable de 1 a 0 de la bodega con un id_bodega determinado
+    // solo si es_actualizable esta en  1
+    @Modifying
+    @Transactional
+    @Query("UPDATE Bodega b SET b.periodo_actualizable = CURRENT_TIMESTAMP, b.es_actualizable = false WHERE b.id_bodega = :id_bodega AND b.es_actualizable = true")
+    int actualizarPeriodoYEstado(@Param("id_bodega") Integer id_bodega);
 
 
 

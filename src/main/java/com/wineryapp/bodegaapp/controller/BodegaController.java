@@ -20,11 +20,18 @@ public class BodegaController {
     private BodegaService bodegaService;
 
     // Endpoint para obtener las bodegas con DTO
+    // se une a http://localhost:4200/bodegaSSSSS
+
     @GetMapping("/actualizablesDTO")
     public ResponseEntity<List<BodegaDTO>> obtenerBodegasActualizablesDTO() {
         List<BodegaDTO> bodegasDTO = bodegaService.obtenerBodegasActualizablesDTO();
         return ResponseEntity.ok(bodegasDTO);
     }
+
+
+
+
+
 
     // Endpoint para obtener las bodegas sin DTO
     @GetMapping("/actualizables")
@@ -54,5 +61,20 @@ public class BodegaController {
     public ResponseEntity<List<BodegaFullDTO>> obtenerBodegasActualizablesFullDTO() {
         List<BodegaFullDTO> bodegasFullDTO = bodegaService.obtenerBodegasActualizablesFullDTO();
         return ResponseEntity.ok(bodegasFullDTO);
+    }
+
+
+
+    // actualiza los campos periodo_actualizable por la fecha actual  y
+    // es_actualizable de 1 a 0 de la bodega con un id_bodega determinado
+    // solo si es_actualizable esta en  1
+    @PutMapping("/actualizar-periodo-estado/{id_bodega}")
+    public ResponseEntity<String> actualizarPeriodoYEstado(@PathVariable Integer id_bodega) {
+        boolean actualizado = bodegaService.actualizarPeriodoYEstado(id_bodega);
+        if (actualizado) {
+            return ResponseEntity.ok("Bodega actualizada correctamente");
+        } else {
+            return ResponseEntity.status(400).body("No se pudo actualizar la bodega, verifique que el ID sea correcto y que la bodega sea actualizable.");
+        }
     }
 }
