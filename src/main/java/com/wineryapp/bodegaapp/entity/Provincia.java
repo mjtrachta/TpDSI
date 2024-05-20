@@ -15,12 +15,13 @@ import lombok.Setter;
 public class Provincia {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idProvincia;
+    @Column(name = "id_provincia")
+    private Integer id_provincia;
 
     private String nombre;
 
     @ManyToOne
-    @JoinColumn(name = "idPais")
+    @JoinColumn(name = "id_pais")
     private Pais pais;
 
     // Getters and setters

@@ -15,7 +15,8 @@ import lombok.Setter;
 public class Pais {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idPais;
+    @Column(name = "id_pais")
+    private Integer id_pais;
 
     private String nombre;
 

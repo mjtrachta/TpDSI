@@ -15,15 +15,17 @@ import lombok.Setter;
 public class Varietal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idVarietal;
+    @Column(name = "id_varietal")
+    private Integer id_varietal;
 
     private String descripcion;
 
-    private String porcentajeComposicion;
+    @Column(name = "porcentaje_composicion")
+    private String porcentaje_composicion;
 
     @ManyToOne
-    @JoinColumn(name = "idTipoUva")
-    private TipoUva tipoUva;
+    @JoinColumn(name = "id_tipo_uva")
+    private TipoUva tipo_uva;
 
     // Getters and setters
 }

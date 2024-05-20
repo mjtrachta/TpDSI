@@ -15,10 +15,13 @@ import lombok.Setter;
 public class TipoUva {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idTipoUva;
+    @Column(name = "id_tipo_uva")
+    private Integer id_tipo_uva;
 
+    @Column(name = "nombre")
     private String nombre;
 
+    @Column(name = "descripcion")
     private String descripcion;
 
 // Getters and setters

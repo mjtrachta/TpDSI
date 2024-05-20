@@ -15,14 +15,15 @@ import lombok.Setter;
 public class RegionVitivinicola {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idRegion;
+    @Column(name = "id_region")
+    private Integer id_region;
 
     private String nombre;
 
     private String descripcion;
 
     @ManyToOne
-    @JoinColumn(name = "idProvincia")
+    @JoinColumn(name = "id_provincia")
     private Provincia provincia;
 
     // Getters and setters

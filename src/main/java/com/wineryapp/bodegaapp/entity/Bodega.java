@@ -17,13 +17,14 @@ import java.time.LocalDateTime;
 public class Bodega {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idBodega;
+    @Column(name = "id_bodega")
+    private Integer id_bodega;
 
     private String nombre;
 
     @ManyToOne
-    @JoinColumn(name = "coordenadaUbicacion")
-    private RegionVitivinicola regionVitivinicola;
+    @JoinColumn(name = "coordenada_ubicacion")
+    private RegionVitivinicola region_vitivinicola;
 
     @Lob
     private String descripcion;
@@ -31,9 +32,12 @@ public class Bodega {
     @Lob
     private String historia;
 
-    private LocalDateTime periodoActualizable;
+    @Column(name = "periodo_actualizable")
+    private LocalDateTime periodo_actualizable;
 
-    private Boolean esActualizable;
+    @Column(name = "es_actualizable")
+    private Boolean es_actualizable;
+
 
     // Getters and setters
 }
