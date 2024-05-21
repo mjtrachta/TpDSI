@@ -6,7 +6,7 @@ import com.wineryapp.bodegaapp.service.VinoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.kafka.core.KafkaTemplate;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,8 +23,7 @@ public class VinoController {
     }
 
 
-    @Autowired
-    private KafkaTemplate<String, Object> kafkaTemplate;
+
 
     @GetMapping("/bodega/{idBodega}")
     public ResponseEntity<List<Vino>> obtenerVinosPorBodegaId(@PathVariable("idBodega") Integer idBodega) {
@@ -52,9 +51,5 @@ public class VinoController {
         return new ResponseEntity<>(vinoCreado, HttpStatus.CREATED);
     }
 
-    @PostMapping("/accept")
-    public ResponseEntity<String> acceptPost(@RequestBody Vino vino) {
-        kafkaTemplate.send("vino-topic", vino); // Envía el vino a Kafka
-        return ResponseEntity.ok("POST accepted");
-    }
+
 }
