@@ -13,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/vinos")
+@CrossOrigin(origins = "http://localhost:4200")
 public class VinoController {
 
     private final VinoService vinoService;
