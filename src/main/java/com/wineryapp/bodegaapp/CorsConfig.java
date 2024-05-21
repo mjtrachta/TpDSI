@@ -13,27 +13,15 @@ import java.util.Arrays;
 public class CorsConfig {
 
     @Bean
-    CorsConfigurationSource corsConfigurationSource(){
-        CorsConfiguration config =  new CorsConfiguration();
-        config.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
-        config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT, DELETE"));
-        config.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
+    public CorsFilter corsFilter() {
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-
-        org.springframework.web.cors.UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        config.addAllowedOrigin("http://localhost:4200");
+        config.addAllowedHeader("*");
+        config.addAllowedMethod("*");
         source.registerCorsConfiguration("/**", config);
-
-        return source;
-    }
-
-    @Bean
-    FilterRegistrationBean<org.springframework.web.filter.CorsFilter> corsFilter(){
-        FilterRegistrationBean<org.springframework.web.filter.CorsFilter> bean  = new FilterRegistrationBean<>(new CorsFilter(
-                corsConfigurationSource()));
-        bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
-
-        return  bean;
-
+        return new CorsFilter(source);
     }
 }
 
