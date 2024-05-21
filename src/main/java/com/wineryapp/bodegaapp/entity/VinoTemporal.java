@@ -7,12 +7,12 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "vino")
+@Table(name = "vino_temporal")
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Vino {
+public class VinoTemporal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_vino")
@@ -37,22 +37,4 @@ public class Vino {
     @ManyToOne
     @JoinColumn(name = "id_varietal")
     private Varietal varietal;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    @Column(name = "estado")
-    private String estado; // Puede ser "pendiente" o "confirmado"
-
-    // Getters and setters
 }
