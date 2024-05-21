@@ -51,8 +51,7 @@ public class Vino {
 
 
 
-    @Column(name = "estado")
-    private String estado; // Puede ser "pendiente" o "confirmado"
+
 
     // Getters and setters
 }
